@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[System.Serializable]
+public class Anim
+{
+	public AnimationClip idle;
+	public AnimationClip runForward;
+	public AnimationClip runBackward;
+	public AnimationClip runRight;
+	public AnimationClip runLeft;
+}
 public class PlayerCtrl : MonoBehaviour {
 
 	private float h = 0.0f;
@@ -8,10 +18,16 @@ public class PlayerCtrl : MonoBehaviour {
 	private Transform tr;
 	public float moveSpeed = 10.0f;
 	public float rotSpeed = 100.0f;
+	public Anim anim;
+	public Animation _animation;
 
 	// Use this for initialization
 	void Start () {
 		tr = GetComponent<Transform>();
+		_animation = GetComponentInChildren<Animation>();
+
+		_animation.clip = anim.idle;
+		_animation.Play();
 	}
 	
 	// Update is called once per frame
